@@ -14,12 +14,13 @@ import { IconType } from 'react-icons'
 import { Platform } from "../hooks/useGames";
 import { HStack, Icon } from "@chakra-ui/react";
 
+//*type array of platform objects pulled from API
 interface Props {
     platforms: Platform[];
 }
 
 const PlatformIconList = ({ platforms }: Props) => {
-    const iconMap: { [key: string]: IconType } = {
+    const iconMap: { [key: string]: IconType } = { //* index signature to have dynamic prop names 
         //* name: PlayStation
         //* slug: playstation
         pc: FaWindows,
