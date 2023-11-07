@@ -8,15 +8,19 @@ function App() {
     return (
         <Grid
             templateAreas={{
-                base: `"nav" "main"`,
-                lg: `"nav nav" "aside main"`
+                base: `"nav" "main"`, //*base scenario of a single column
+                lg: `"nav nav" "aside main"` //*2 columns on large devices
+            }}
+            templateColumns={{
+                base: '1fr', //*Base look scenario 1 fraction so column stretches and takes up all available spaces
+                lg: '200px 1fr' //*Large device base scenario, 2 columns, first is 200px, 2nd is where the game grid is and ganna stretch and take up all the available space
             }}
         >
-            <GridItem area="nav">
+            <GridItem area="nav" >
                 <NavBar/>
             </GridItem>
             <Show above="lg">
-                <GridItem area="aside">
+                <GridItem area="aside" paddingX={5}>
                     <GenreList />
                 </GridItem>
             </Show>
