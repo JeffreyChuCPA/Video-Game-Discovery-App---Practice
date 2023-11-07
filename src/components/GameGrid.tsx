@@ -5,7 +5,7 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 
 const GameGrid = () => {
-    const { games, error, isLoading } = useGames(); //*pulling games and error props from the useGames function via destructuring
+    const { data, error, isLoading } = useGames(); //*pulling games and error props from the useGames function via destructuring
 
     const skeletons = [1, 2, 3, 4, 5, 6]; //*hard code to show 6 skeleton cards on grid when loading
 
@@ -23,7 +23,7 @@ const GameGrid = () => {
                             <GameCardSkeleton key={skeleton} />
                         </GameCardContainer>
                     ))}
-                {games.map((game) => (
+                {data.map((game) => (
                     <GameCardContainer>
                         <GameCard key={game.id} game={game} />
                     </GameCardContainer>
