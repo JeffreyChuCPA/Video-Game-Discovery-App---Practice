@@ -1,3 +1,4 @@
+import { GameQuery } from "../App";
 import useData from "./useData";
 import { Genre } from "./useGenres";
 
@@ -21,18 +22,17 @@ export interface Game {
 //*added selectedGenre as a param, to pass into useData as a API query fetch param, and added a dep param as an array to act as the dependency to trigger changes
 //*params: is an axios defined properties, genres: is from the API query parameter as per API documentation, set genres to be selectedGenre.ID as the ID would be the index for the genre as per API documentation
 const useGames = (
-    selectedGenre: Genre | null,
-    selectedPlatform: Platform | null
+    gameQuery: GameQuery,
 ) =>
     useData<Game>(
         "/games",
         {
             params: {
-                genres: selectedGenre?.id,
-                parent_platforms: selectedPlatform?.id
+                genres: gameQuery.genre?.id,
+                parent_platforms: gameQuery.platform?.id
             }
         },
-        [selectedGenre?.id, selectedPlatform?.id]
+        [gameQuery]
     );
 
 export default useGames;
