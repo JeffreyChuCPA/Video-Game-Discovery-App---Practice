@@ -19,6 +19,8 @@ export interface Game {
 
 
 //*pulled the states and fetch from gamegrid component and set it up as a custom hook
+//*added selectedGenre as a param, to pass into useData as a API query fetch param, and added a dep param as an array to act as the dependency to trigger changes
+//*params: is an axios defined properties, genres: is from the API query parameter as per API documentation, set genres to be selectedGenre.ID as the ID would be the index for the genre as per API documentation
 const useGames = (selectedGenre: Genre | null) => useData<Game>('/games', { params: {genres: selectedGenre?.id}}, [selectedGenre?.id]);
 
 export default useGames;

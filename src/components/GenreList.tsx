@@ -6,9 +6,10 @@ import { getCroppedImageURL } from "../services/image-url";
 //* component that holds some state should be the one updating it
 interface Props {
     onSelectGenre: (genre: Genre) => void; //*to notify parent that a genre has been selected
+    selectedGenre: Genre | null;
 }
 
-const GenreList = ({onSelectGenre}: Props) => {
+const GenreList = ({selectedGenre, onSelectGenre}: Props) => {
     const { data, isLoading, error } = useGenres(); //*components should not know anything about making HTTP requests
 
     if (error) return null;
@@ -25,7 +26,7 @@ const GenreList = ({onSelectGenre}: Props) => {
                             borderRadius={8}
                             src={getCroppedImageURL(genre.image_background)}
                         />
-                        <Button fontSize='lg' variant='link' onClick={() => onSelectGenre(genre)} >{genre.name}</Button>
+                        <Button fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} fontSize='lg' variant='link' onClick={() => onSelectGenre(genre)} >{genre.name}</Button>
                     </HStack>
                 </ListItem>
             ))}
