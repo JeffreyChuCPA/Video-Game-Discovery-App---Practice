@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
 
 //*this is a generic data fetching hook
 //*factored out of useGenre and useGame originally
@@ -10,7 +10,7 @@ interface FetchResponse <T> {
     results: T[]
 }
 
-const useData = <T>(endpoint: string) => {
+const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: any[]) => {
     const [data, setData] = useState<T[]>([]); //*Stores the games from api. Empty array initialized, but of type Game[] defined above
     const [error, setError] = useState(''); //*set error message
     const [isLoading, setLoading] = useState(false)
@@ -21,7 +21,7 @@ const useData = <T>(endpoint: string) => {
 
         setLoading(true);
         apiClient
-            .get<FetchResponse<T>>(endpoint, {signal: controller.signal})
+            .get<FetchResponse<T>>(endpoint, {signal: controller.signal, ...requestConfig})
             .then(res => {
                 setData(res.data.results); //* res var is type FetchGamesResponse, so we can then get .results property. res var has property and responses from Axios, use data prop so we can read body of response
                 setLoading(false);
@@ -33,7 +33,7 @@ const useData = <T>(endpoint: string) => {
             });
 
         return () => controller.abort();
-    }, []);
+    }, deps ? [...deps] : []);
     
     return { data, error, isLoading }; //*return games and error objects to be used in components
 }

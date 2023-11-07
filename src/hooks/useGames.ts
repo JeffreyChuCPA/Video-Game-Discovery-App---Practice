@@ -1,4 +1,5 @@
 import useData from "./useData";
+import { Genre } from "./useGenres";
 
 //*interface for platform objects, data pulled from API 
 export interface Platform {
@@ -18,6 +19,6 @@ export interface Game {
 
 
 //*pulled the states and fetch from gamegrid component and set it up as a custom hook
-const useGames = () => useData<Game>('/games');
+const useGames = (selectedGenre: Genre | null) => useData<Game>('/games', { params: {genres: selectedGenre?.id}}, [selectedGenre?.id]);
 
 export default useGames;
