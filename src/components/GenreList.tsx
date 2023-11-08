@@ -3,7 +3,6 @@ import {
     List,
     ListItem,
     Image,
-    Spinner,
     Button,
     Heading
 } from "@chakra-ui/react";
@@ -17,7 +16,7 @@ interface Props {
 }
 
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
-    const { data, isLoading, error } = useGenres(); //*components should not know anything about making HTTP requests
+    const { data} = useGenres(); //*components should not know anything about making HTTP requests
 
     //if (error) return null;
     //if (isLoading) return <Spinner />; //*return dictates what is to be shown. Spinner shown if isLoading is true, otherwise, show the list of genres in code below
