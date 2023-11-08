@@ -15,6 +15,7 @@ export interface Game {
     background_image: string;
     parent_platforms: { platform: Platform }[]; //*Parent platform is an array of objects that each object has a platform property of type Platform
     metacritic: number; //*metacritic prop as per dev tool
+    rating_top: number;
 }
 
 //*pulled the states and fetch from gamegrid component and set it up as a custom hook
