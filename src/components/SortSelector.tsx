@@ -3,9 +3,7 @@ import {
     Menu,
     MenuButton,
     MenuItem,
-    MenuList,
-    Spinner
-} from "@chakra-ui/react";
+    MenuList} from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
