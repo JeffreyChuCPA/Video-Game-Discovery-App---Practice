@@ -4,7 +4,7 @@ const config: ThemeConfig = {
     initialColorMode:"dark"
 }
 
-const theme = extendTheme({
+const theme = extendTheme({ //*assigning different colors to the color code numbers used by Chakra (50, 100, 200, etc)
     config,
     colors: {
         gray: {
